@@ -1,9 +1,0 @@
-Backend -> servidor (API node.js + express?)
-    - server.js -> punto de entrada del servidor
-    - package.json -> dependencias y scripts del backend
-    - db.js -> conexión a la base de datos
-    - .env -> variables de entorno (puerto, cadena de conexión a la base de datos, etc.)
-    - api (lógica del servidor):
-        - taskModel.js -> definición del modelo de datos (estructura)
-        - taskController.js -> funciones que manejan la lógica de negocio (CRUD)
-        - taskRoutes.js -> endpoints de la API
