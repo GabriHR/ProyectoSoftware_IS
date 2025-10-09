@@ -1,0 +1,18 @@
+Frontend -> Interfaz Web (HTML, CSS, JavaScript o REACT)
+    - package.json -> dependencias del frontend
+    - .env -> variables de entorno (puerto, cadena de conexión a la base de datos, etc.)
+
+    - public:
+        - index.html -> archivo HTML principal (en el que se podría montar React)
+        - styles.css -> estilos CSS
+
+    - src:
+        - App.js -> componente principal de la aplicación
+        - index.js -> punto de entrada del frontend
+        - components (componentes visuales, ej. tablero kanban):
+            - taskBoard.jsç
+
+
+*docker-compose -> ejecutar backend+frontend juntos
+*README.md -> documentación del proyecto
+*.gitignore -> archivos y carpetas a ignorar por git
