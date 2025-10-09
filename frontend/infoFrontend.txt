@@ -10,7 +10,7 @@ Frontend -> Interfaz Web (HTML, CSS, JavaScript o REACT)
         - App.js -> componente principal de la aplicación
         - index.js -> punto de entrada del frontend
         - components (componentes visuales, ej. tablero kanban):
-            - taskBoard.jsç
+            - taskBoard.js
 
 
 *docker-compose -> ejecutar backend+frontend juntos
