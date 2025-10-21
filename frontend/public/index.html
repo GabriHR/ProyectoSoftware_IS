@@ -1,10 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow - Gestor de Tareas</title>
+    <link rel="stylesheet" href="styles.css" />
+
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <h1>TaskFlow</h1>
+            <p>Organiza tu trabajo, visualiza tu progreso.</p>
+        </div>
+        <div class="login-form">
+            <form>
+                <label>
+                    <input type="text" placeholder="Usuario" required />
+                </label>
+                <label>
+                    <input type="password" placeholder="Contraseña" required />
+                </label>
+                <button type="submit">Iniciar sesión</button>
+            </form>
+        </div>
+    </header>
 
+    <main class="main-content">
+        <section class="intro">
+            <h2>Bienvenido a TaskFlow</h2>
+            <p>TaskFlow es tu espacio digital para organizar el trabajo en equipo. Desde la creación de proyectos hasta el seguimiento de tareas, todo está centralizado para que tu equipo avance con claridad y eficiencia.</p>
+        </section>
+
+        <section class="alternating-section">
+            <div class="row">
+                <div class="text">
+                    <h3>📌 ¿Qué puedes hacer?</h3>
+                    <ul>
+                        <li>Crear proyectos y dividirlos en tareas</li>
+                        <li>Asignar responsables y fechas límite</li>
+                        <li>Visualizar el progreso en tiempo real</li>
+                        <li>Organizar el trabajo con tableros Kanban</li>
+                    </ul>
+                </div>
+                <div class="image-box">
+                    <img src="https://www.sesamehr.mx/wp-content/uploads/2022/04/gestor-tareas-realizar-cronograma-proyecto.jpg" alt="Imagen sobre funcionalidades" />
+                </div>
+            </div>
+
+            <div class="row reverse">
+                <div class="text">
+                    <h3>👥 ¿Para quién está pensado?</h3>
+                    <ul>
+                        <li>Equipos pequeños que buscan organización</li>
+                        <li>Estudiantes que trabajan en grupo</li>
+                        <li>Freelancers que gestionan múltiples tareas</li>
+                        <li>Profesionales que quieren evitar el caos del correo y Excel</li>
+                    </ul>
+                </div>
+                <div class="image-box">
+                    <img src="https://dt2sdf0db8zob.cloudfront.net/wp-content/uploads/2018/11/Why-it%E2%80%99s-Awesome-to-be-a-Freelancer-1.png" alt="Imagen sobre público objetivo" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="text">
+                    <h3>🚀 ¿Por qué usar TaskFlow?</h3>
+                    <ul>
+                        <li>Todo tu trabajo en un solo lugar</li>
+                        <li>Evita olvidos y retrasos</li>
+                        <li>Mejora la comunicación entre miembros</li>
+                        <li>Facilita la toma de decisiones con métricas claras</li>
+                    </ul>
+                </div>
+                <div class="image-box">
+                    <img src="https://lanaquera.com/wp-content/uploads/Directivos-llevan-llave.png" alt="Imagen sobre beneficios" />
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+
+
+
+    <footer>
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h4>📞 Contacto</h4>
+                <p>¿Tienes dudas o sugerencias?</p>
+                <p>Email: soporte@taskflow.com</p>
+                <p>Teléfono: +34 912 345 678</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>📚 Información útil</h4>
+                <ul>
+                    <li><a href="#">Guía de usuario</a></li>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>🔗 Enlaces rápidos</h4>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Proyectos</a></li>
+                    <li><a href="#">Tareas</a></li>
+                    <li><a href="#">Métricas</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TaskFlow. Proyecto académico desarrollado por Gabriel, Rodrigo y Javier.</p>
+        </div>
+    </footer>
 </body>
 </html>
