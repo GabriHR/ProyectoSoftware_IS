@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h3>Admin Panel</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#" data-target="dashboard">Dashboard</a></li>
+                <li><a href="#" data-target="users">Usuarios</a></li>
+                <li><a href="#" data-target="products">Productos</a></li>
+                <li><a href="#" data-target="orders">Pedidos</a></li>
+                <li><a href="#" data-target="reports">Informes</a></li>
+                <li><a href="#" data-target="settings">Configuración</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-btn">Cerrar Sesión</a>
+            </div>
+        </nav>
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Dashboard</h1>
+                <div class="admin-info">
+                    <span>Bienvenido, Admin</span>
+                </div>
+            </header>
+
+            <div id="dashboard" class="content-section active">
+                <div class="dashboard-widgets">
+                    <div class="widget">
+                        <h4>Usuarios Totales</h4>
+                        <p>1,250</p>
+                    </div>
+                    <div class="widget">
+                        <h4>Ventas del Mes</h4>
+                        <p>$15,780</p>
+                    </div>
+                    <div class="widget">
+                        <h4>Pedidos Nuevos</h4>
+                        <p>320</p>
+                    </div>
+                    <div class="widget">
+                        <h4>Tasa de Rebote</h4>
+                        <p>25.5%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="users" class="content-section">
+                <h2>Usuarios Recientes</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Fecha de Registro</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Carlos Sánchez</td>
+                                <td>carlos.sanchez@example.com</td>
+                                <td>2024-05-20</td>
+                                <td>Cliente</td>
+                                <td><button class="btn-edit">Editar</button> <button class="btn-delete">Eliminar</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Ana García</td>
+                                <td>ana.garcia@example.com</td>
+                                <td>2024-05-19</td>
+                                <td>Cliente</td>
+                                <td><button class="btn-edit">Editar</button> <button class="btn-delete">Eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="products" class="content-section">
+                <h2>Gestión de Productos</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Categoría</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Producto A</td>
+                                <td>$50</td>
+                                <td>100</td>
+                                <td>Categoría 1</td>
+                                <td><button class="btn-edit">Editar</button> <button class="btn-delete">Eliminar</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Producto B</td>
+                                <td>$75</td>
+                                <td>50</td>
+                                <td>Categoría 2</td>
+                                <td><button class="btn-edit">Editar</button> <button class="btn-delete">Eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="orders" class="content-section">
+                <h2>Gestión de Pedidos</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Pedido</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>101</td>
+                                <td>Carlos Sánchez</td>
+                                <td>2024-05-21</td>
+                                <td>$125</td>
+                                <td>Procesando</td>
+                                <td><button class="btn-edit">Ver</button></td>
+                            </tr>
+                            <tr>
+                                <td>102</td>
+                                <td>Ana García</td>
+                                <td>2024-05-21</td>
+                                <td>$75</td>
+                                <td>Enviado</td>
+                                <td><button class="btn-edit">Ver</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="reports" class="content-section">
+                <h2>Informes</h2>
+            </div>
+
+            <div id="settings" class="content-section">
+                <h2>Configuración</h2>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.sidebar-menu a');
+            const sections = document.querySelectorAll('.content-section');
+            const header = document.querySelector('.main-header h1');
+
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('data-target');
+                    const targetSection = document.getElementById(targetId);
+
+                    // Update active link
+                    links.forEach(l => l.parentElement.classList.remove('active'));
+                    this.parentElement.classList.add('active');
+
+                    // Show/hide sections
+                    sections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+
+                    // Update header
+                    header.textContent = this.textContent;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
