@@ -1,5 +1,5 @@
 # ProyectoSoftware_IS
-* Link con acceso al repositorio:
+* Link con acceso al repositorio: https://github.com/GabriHR/ProyectoSoftware_IS.git
 
 ### Integrantes del grupo
 * Gabriel Hernanz Rodríguez
