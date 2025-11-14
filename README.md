@@ -1,4 +1,10 @@
 # ProyectoSoftware_IS
+* Link con acceso al repositorio: https://github.com/GabriHR/ProyectoSoftware_IS.git
+
+### Integrantes del grupo
+* Gabriel Hernanz Rodríguez
+* Rodrigo Yepez Rubio
+
 TaskFlow: “Organiza tu trabajo, visualiza tu progreso.” 
 Gestor web inteligente de tareas y flujo de trabajo para equipos pequeños.
 ---
