@@ -7,8 +7,8 @@ Frontend -> Interfaz Web (HTML, CSS, JavaScript o REACT)
         - styles.css -> estilos CSS
 
     - src:
-        - App.js -> componente principal de la aplicación
-        - index.js -> punto de entrada del frontend
+        - Login.js -> componente principal de la aplicación
+        - Register.js -> punto de entrada del frontend
         - components (componentes visuales, ej. tablero kanban):
             - taskBoard.js
 

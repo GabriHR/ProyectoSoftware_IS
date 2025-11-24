@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "JefeSupremo",
+      "email": "admin@taskflow.com",
+      "password": "admin1234",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "Rodrigo",
+      "email": "rodrigo@equipo.com",
+      "password": "pass1234",
+      "role": "user"
+    }
+  ],
+  "tasks": []
+}
