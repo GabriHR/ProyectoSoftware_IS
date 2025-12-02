@@ -1,136 +1,140 @@
-<!-- COSAS A HACER -->
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TaskFlow - Vista de usuario</title>
-  <link rel="stylesheet" href="/css/user.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TaskFlow - Vista de usuario</title>
+    <link rel="stylesheet" href="/css/user.css" />
 </head>
 <body>
-  <header class="site-header">
+<header class="site-header">
     <div class="logo">
-      <h1>TaskFlow</h1>
-      <p class="muted">Panel personal</p>
+        <h1>TaskFlow</h1>
+        <p class="muted">Panel personal</p>
     </div>
     <nav class="top-nav">
-      <span class="username">Hola, Rodrigo</span>
-      <select id="projectSelect" aria-label="Seleccionar proyecto">
-        <option value="all">Todos los proyectos</option>
-        <option value="p1">Proyecto Alpha</option>
-        <option value="p2">Proyecto Beta</option>
-        <option value="p3">Proyecto Gamma</option>
-      </select>
-      <button class="btn">Cerrar sesión</button>
+        <span class="username" id="user-display-name">Hola, Rodrigo</span>
+        <select id="projectSelect" aria-label="Seleccionar proyecto">
+            <option value="all">Todos los proyectos</option>
+        </select>
+        <button class="btn" onclick="window.location.href='/login'">Cerrar sesión</button>
     </nav>
-  </header>
+</header>
 
-  <main class="container">
+<main class="container">
     <section class="hero">
-      <h2>Mis proyectos</h2>
-      <p class="muted">Vista con todos tus proyectos, progreso y detalles rápidos.</p>
+        <h2>Mis proyectos</h2>
+        <p class="muted">Vista con todos tus proyectos, progreso y detalles rápidos.</p>
     </section>
 
     <section class="dashboard-grid">
-      <div class="cards">
-        <div class="card">
-          <div class="card-title">Proyectos</div>
-          <div class="card-value">3</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Tareas abiertas</div>
-          <div class="card-value">14</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Miembros</div>
-          <div class="card-value">8</div>
-        </div>
-      </div>
-
-      <div class="projects-panel">
-        <div class="panel-header">
-          <h3>Lista de proyectos</h3>
-          <div class="actions">
-            <input id="search" type="search" placeholder="Buscar proyecto..." />
-            <button class="btn primary">Nuevo proyecto</button>
-          </div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-title">Proyectos</div>
+                <div class="card-value">5</div> </div>
+            <div class="card">
+                <div class="card-title">Tareas abiertas</div>
+                <div class="card-value">14</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Miembros</div>
+                <div class="card-value">8</div>
+            </div>
         </div>
 
-        <table class="projects-table" aria-label="Proyectos">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Estado</th>
-              <th>Progreso</th>
-              <th>Fecha</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-id="p1">
-              <td>Proyecto Alpha</td>
-              <td><span class="chip active">En curso</span></td>
-              <td>
-                <div class="progress"><div class="bar" style="width:65%"></div></div>
-              </td>
-              <td>2025-02-10</td>
-              <td>
-                <button class="icon-btn">Abrir</button>
-                <button class="icon-btn">Editar</button>
-              </td>
-            </tr>
-            <tr data-id="p2">
-              <td>Proyecto Beta</td>
-              <td><span class="chip paused">En espera</span></td>
-              <td>
-                <div class="progress"><div class="bar" style="width:28%"></div></div>
-              </td>
-              <td>2025-01-22</td>
-              <td>
-                <button class="icon-btn">Abrir</button>
-                <button class="icon-btn">Editar</button>
-              </td>
-            </tr>
-            <tr data-id="p3">
-              <td>Proyecto Gamma</td>
-              <td><span class="chip done">Completado</span></td>
-              <td>
-                <div class="progress"><div class="bar" style="width:100%"></div></div>
-              </td>
-              <td>2024-12-05</td>
-              <td>
-                <button class="icon-btn">Abrir</button>
-                <button class="icon-btn">Editar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="projects-panel">
+            <div class="panel-header">
+                <h3>Lista de proyectos</h3>
+                <div class="actions">
+                    <input id="search" type="search" placeholder="Buscar proyecto..." />
+                    <button class="btn primary">Nuevo proyecto</button>
+                </div>
+            </div>
 
-        <div class="panel-footer muted">Mostrando 3 proyectos — compatible con paginación/filtrado.</div>
-      </div>
-
-      <aside class="detail-panel" aria-live="polite">
-        <h4>Detalle del proyecto</h4>
-        <div class="detail-content">
-          <p class="muted">Selecciona un proyecto para ver descripción, miembros y últimas tareas.</p>
-          <div class="detail-metrics">
-            <div><strong>Responsable:</strong> María López</div>
-            <div><strong>Tareas:</strong> 42</div>
-            <div><strong>Avance:</strong> 65%</div>
-          </div>
-          <div class="detail-actions">
-            <button class="btn primary">Ir al tablero</button>
-            <button class="btn">Descargar reporte</button>
-          </div>
+            <table class="projects-table" aria-label="Proyectos">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Progreso</th>
+                    <th>Fecha Límite</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="projects-table-body">
+                </tbody>
+            </table>
         </div>
-      </aside>
+
+        <aside class="detail-panel" aria-live="polite">
+            <h4 id="sidebar-title">Detalle del proyecto</h4>
+
+            <div class="detail-content">
+                <p class="muted">Selecciona un proyecto de la lista para ver sus métricas rápidas.</p>
+
+                <div class="detail-metrics">
+                    <div><strong>Responsable:</strong> <span id="sidebar-manager">-</span></div>
+                    <div><strong>Tareas:</strong> <span id="sidebar-tasks">-</span></div>
+                    <div><strong>Avance:</strong> <span id="sidebar-progress">0%</span></div>
+                </div>
+
+            </div>
+        </aside>
     </section>
-  </main>
+</main>
 
-  <footer class="site-footer">
+<div id="project-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modal-title">Título del Proyecto</h2>
+
+        <div class="modal-body">
+            <div class="modal-info-row">
+                <p><strong>Estado:</strong> <span id="modal-status" class="status-badge">-</span></p>
+                <p><strong>Jefe de Proyecto:</strong> <span id="modal-manager">-</span></p>
+            </div>
+
+            <hr class="modal-divider">
+
+            <p><strong>Descripción:</strong></p>
+            <p id="modal-desc" class="desc-text">...</p>
+
+            <h3>Equipo de trabajo</h3>
+            <ul id="modal-members-list">
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="create-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeCreateModal()">&times;</span>
+        <h2>✨ Nuevo Proyecto</h2>
+        <form id="create-form" style="display:flex; flex-direction:column; gap:15px; margin-top:20px;">
+            <input type="text" id="new-name" placeholder="Nombre del proyecto" required style="padding:10px; border:1px solid #ccc; border-radius:5px;">
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                <input type="text" id="new-manager" placeholder="Responsable" required style="padding:10px; border:1px solid #ccc; border-radius:5px;">
+                <input type="date" id="new-deadline" required style="padding:10px; border:1px solid #ccc; border-radius:5px;">
+            </div>
+
+            <select id="new-status" style="padding:10px; border:1px solid #ccc; border-radius:5px;">
+                <option value="Pendiente">Pendiente</option>
+                <option value="En curso">En curso</option>
+                <option value="En espera">En espera</option>
+            </select>
+
+            <textarea id="new-desc" rows="3" placeholder="Descripción breve..." style="padding:10px; border:1px solid #ccc; border-radius:5px;"></textarea>
+
+            <button type="submit" class="btn primary">Guardar Proyecto</button>
+        </form>
+    </div>
+</div>
+
+<footer class="site-footer">
     <p class="muted">&copy; 2025 TaskFlow</p>
-  </footer>
+</footer>
+
+<script type="module" src="/src/user.js"></script>
 </body>
 </html>

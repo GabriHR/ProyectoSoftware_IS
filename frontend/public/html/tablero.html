@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero de Gestión</title>
+    <link rel="stylesheet" href="/css/user.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body { background-color: #f1f5f9; }
+        .board-container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+
+        .board-header {
+            background: white; padding: 25px; border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;
+        }
+
+        .dashboard-grid {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 25px;
+        }
+
+        .card-box {
+            background: white; padding: 25px; border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); margin-bottom: 25px;
+        }
+
+        .card-box h3 {
+            margin-top: 0; color: #1e293b;
+            border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px;
+        }
+
+        /* Tareas */
+        .task-list { list-style: none; padding: 0; }
+        .task-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+        .task-priority { font-size: 0.75em; padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+        .priority-Alta { background: #fee2e2; color: #991b1b; }
+        .priority-Media { background: #ffedd5; color: #9a3412; }
+        .priority-Baja { background: #dcfce7; color: #166534; }
+
+        /* Presupuesto */
+        .budget-row { display: flex; justify-content: space-between; margin-bottom: 15px; padding: 15px; background: #f8fafc; border-radius: 8px; }
+        .money { font-weight: 800; font-size: 1.2rem; color: #0f172a; }
+
+        /* Archivos */
+        .drop-zone {
+            border: 2px dashed #cbd5e1; padding: 30px; text-align: center; border-radius: 8px;
+            cursor: pointer; transition: 0.3s; background: #f8fafc; color: #64748b;
+        }
+        .drop-zone:hover { border-color: #3b82f6; background: #eff6ff; color: #3b82f6; }
+
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; margin-top: 20px; }
+        .file-item {
+            border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; text-align: center;
+            background: white; text-decoration: none; color: #333; display: block;
+        }
+        .file-item:hover { border-color: #3b82f6; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+        /* Error */
+        #error-display { background: #fee2e2; color: #b91c1c; padding: 20px; border-radius: 8px; margin: 20px auto; display: none; text-align: center; border: 1px solid #ef4444; }
+    </style>
+</head>
+<body>
+
+<div id="error-display"></div>
+
+<div id="pdf-content">
+    <header class="site-header">
+        <div class="logo"><h1>TaskFlow</h1><p class="muted">Gestión Integral</p></div>
+        <nav class="top-nav">
+            <button class="btn" onclick="window.location.href='/user'" data-html2canvas-ignore="true">← Volver</button>
+            <button class="btn primary" id="btn-pdf" data-html2canvas-ignore="true">Descargar PDF 📄</button>
+        </nav>
+    </header>
+
+    <main class="board-container">
+        <div class="board-header">
+            <div>
+                <h2 id="p-name" style="margin:0; font-size: 1.8rem;">Cargando...</h2>
+                <div style="margin-top: 8px; color: #64748b;">
+                    <span id="p-manager">...</span> •
+                    <span id="p-deadline">...</span>
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <span class="chip active" id="p-status" style="font-size: 1rem; padding: 8px 15px;">-</span>
+                <div style="margin-top: 5px; font-size: 0.9em; color: #64748b;">ID: <span id="p-display-id">#</span></div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="left-col">
+                <div class="card-box">
+                    <h3>📊 Estado y Descripción</h3>
+                    <p id="p-desc" style="color: #475569; margin-bottom: 25px; line-height: 1.6;">...</p>
+                    <div style="display: flex; gap: 20px;">
+                        <div style="flex: 1;"><canvas id="statusChart"></canvas></div>
+                        <div style="flex: 1;"><canvas id="performanceChart"></canvas></div>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <h3>📂 Archivos y Entregables</h3>
+                    <div class="drop-zone" id="upload-trigger" data-html2canvas-ignore="true">
+                        <span style="font-size: 2em; display:block; margin-bottom:10px;">☁️</span>
+                        <strong>Haz clic para subir archivos</strong>
+                        <input type="file" id="file-input" style="display: none;">
+                    </div>
+                    <div class="file-grid" id="files-list"></div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="card-box">
+                    <h3>💰 Presupuesto</h3>
+                    <div class="budget-row">
+                        <span style="color:#64748b">Asignado</span>
+                        <span class="money" style="color:#2563eb" id="budget-total">- €</span>
+                    </div>
+                    <div class="budget-row">
+                        <span style="color:#64748b">Gastado</span>
+                        <span class="money" style="color:#dc2626" id="budget-spent">- €</span>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <h3>✅ Tareas Pendientes</h3>
+                    <ul class="task-list" id="task-list-container"><li>Cargando...</li></ul>
+                </div>
+
+                <div class="card-box">
+                    <h3>⚠️ Riesgos Detectados</h3>
+                    <div id="risk-list-container"><span>...</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script type="module" src="/src/tablero.js"></script>
+</body>
+</html>

@@ -2,10 +2,10 @@
 async function loadUsersIntoSelect() {
     try {
         // 1. Pedimos la lista de usuarios al backend
-        const response = await fetch('http://localhost:3000/api/users'); // Necesitarás crear esta ruta GET
+        const response = await fetch('http://localhost:3000/api/users');
         const users = await response.json();
 
-        const select = document.getElementById('task-assignee'); // Tu <select> en el HTML
+        const select = document.getElementById('task-assignee');
         select.innerHTML = '<option value="">-- Selecciona un responsable --</option>';
 
         // 2. Creamos una <option> por cada usuario

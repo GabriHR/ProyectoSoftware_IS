@@ -10,7 +10,7 @@
     <div class="login-container">
         <div class="login-box">
             <h2>Iniciar Sesión</h2>
-            <form action="/api/login" method="POST">
+            <form id="login-form">
                 <div class="input-box">
                     <input type="text" name="username" required>
                     <label>Usuario</label>
@@ -21,11 +21,11 @@
                 </div>
                 <button type="submit" class="btn">Login</button>
                 <div class="register-link">
-                    <p>¿No tienes una cuenta? <a href="register.html">Regístrate</a></p>
+                    <p>¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
                 </div>
             </form>
         </div>
     </div>
-<script src="/frontend/src/Login.js"></script>
+<script type="module" src="/js/Login.js"></script>
 </body>
 </html>

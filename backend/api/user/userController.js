@@ -1,7 +1,7 @@
 // backend/api/userController.js
 const { readData, writeData } = require('../../db.js'); // Importamos las funciones que tocan el archivo
 
-// --- LOGICA DE REGISTRO ---
+// --- LÓGICA DE REGISTRO ---
 const register = (req, res) => {
     const { username, email, password } = req.body;
 
@@ -35,7 +35,7 @@ const register = (req, res) => {
     res.status(201).json({ success: true, message: "Usuario registrado" });
 };
 
-// --- LOGICA DE LOGIN ---
+// --- LÓGICA DE LOGIN ---
 const login = (req, res) => {
     const { email, password } = req.body;
 

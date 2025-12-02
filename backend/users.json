@@ -13,6 +13,13 @@
       "email": "rodrigo@equipo.com",
       "password": "pass1234",
       "role": "user"
+    },
+    {
+      "id": 3,
+      "username": "Gabriel",
+      "email": "gabriel@equipo.com",
+      "password": "pass1234",
+      "role": "user"
     }
   ],
   "tasks": []
