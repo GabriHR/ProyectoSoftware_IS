@@ -1,26 +1,122 @@
-{
-  "users": [
-    {
-      "id": 1,
-      "username": "JefeSupremo",
-      "email": "admin@taskflow.com",
-      "password": "admin1234",
-      "role": "admin"
-    },
-    {
-      "id": 2,
-      "username": "Rodrigo",
-      "email": "rodrigo@equipo.com",
-      "password": "pass1234",
-      "role": "user"
-    },
-    {
-      "id": 3,
-      "username": "Gabriel",
-      "email": "gabriel@equipo.com",
-      "password": "pass1234",
-      "role": "user"
-    }
-  ],
-  "tasks": []
-}
+[
+  {
+    "id": 1,
+    "username": "Jefe Supremo",
+    "email": "admin@taskflow.com",
+    "password": "admin",
+    "role": "admin",
+    "joined": "2024-01-01"
+  },
+  {
+    "id": 2,
+    "username": "Gabriel Hernanz",
+    "email": "gabri@dev.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-02-15"
+  },
+  {
+    "id": 3,
+    "username": "Rodrigo Yepez",
+    "email": "rodri@dev.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-03-10"
+  },
+  {
+    "id": 4,
+    "username": "Sofía Arriaga",
+    "email": "sofia@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-03-22"
+  },
+  {
+    "id": 5,
+    "username": "Roberto Díaz",
+    "email": "roberto.ai@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-04-05"
+  },
+  {
+    "id": 6,
+    "username": "Elena Torres",
+    "email": "elena.hr@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-01-10"
+  },
+  {
+    "id": 7,
+    "username": "David P.",
+    "email": "david.sysadmin@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-02-28"
+  },
+  {
+    "id": 8,
+    "username": "Laura Gil",
+    "email": "laura.mkt@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-05-12"
+  },
+  {
+    "id": 9,
+    "username": "Carlos Ruiz",
+    "email": "carlos.cloud@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-06-01"
+  },
+  {
+    "id": 10,
+    "username": "Lucía Méndez",
+    "email": "lucia.sec@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-01-15"
+  },
+  {
+    "id": 11,
+    "username": "Ana García",
+    "email": "ana.dba@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-03-18"
+  },
+  {
+    "id": 12,
+    "username": "Pedro Sánchez",
+    "email": "pedro.mobile@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-07-20"
+  },
+  {
+    "id": 13,
+    "username": "Miguel Ángel",
+    "email": "miguel.qa@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-08-05"
+  },
+  {
+    "id": 14,
+    "username": "Carmen Ruiz",
+    "email": "carmen.backend@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-09-10"
+  },
+  {
+    "id": 15,
+    "username": "Alejandro Sanz",
+    "email": "alex.frontend@taskflow.com",
+    "password": "123",
+    "role": "user",
+    "joined": "2024-09-15"
+  }
+]

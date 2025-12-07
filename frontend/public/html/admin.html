@@ -3,206 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administrador</title>
+    <title>Panel de Administrador - TaskFlow</title>
     <link rel="stylesheet" href="/css/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="admin-container">
-        <nav class="sidebar">
-            <div class="sidebar-header">
-                <h3>Admin Panel</h3>
-            </div>
-            <ul class="sidebar-menu">
-                <li class="active"><a href="#" data-target="dashboard">Dashboard</a></li>
-                <li><a href="#" data-target="users">Usuarios</a></li>
-                <li><a href="#" data-target="products">Productos</a></li>
-                <li><a href="#" data-target="orders">Pedidos</a></li>
-                <li><a href="#" data-target="reports">Informes</a></li>
-                <li><a href="#" data-target="settings">Configuración</a></li>
-            </ul>
-            <div class="sidebar-footer">
-                <a href="login.html" class="logout-btn">Cerrar Sesión</a>
-            </div>
-        </nav>
-        <main class="main-content">
-            <header class="main-header">
-                <h1>Dashboard</h1>
-                <div class="admin-info">
-                    <span>Bienvenido, Admin</span>
-                </div>
-            </header>
+<div class="admin-container">
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-shield-alt"></i> Admin Panel</h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active"><a href="#dashboard" onclick="showSection('dashboard')"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="#users" onclick="showSection('users')"><i class="fas fa-users"></i> Usuarios</a></li>
+            <li><a href="#projects" onclick="showSection('projects')"><i class="fas fa-project-diagram"></i> Proyectos</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <button onclick="logout()" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </nav>
 
-            <div id="dashboard" class="content-section active">
-                <div class="dashboard-widgets">
-                    <div class="widget">
-                        <h4>Usuarios Totales</h4>
-                        <p>1,250</p>
-                    </div>
-                    <div class="widget">
-                        <h4>Ventas del Mes</h4>
-                        <p>$15,780</p>
-                    </div>
-                    <div class="widget">
-                        <h4>Pedidos Nuevos</h4>
-                        <p>320</p>
-                    </div>
-                    <div class="widget">
-                        <h4>Tasa de Rebote</h4>
-                        <p>25.5%</p>
-                    </div>
+    <main class="main-content">
+        <header class="main-header">
+            <h1 id="page-title">Panel de Control</h1>
+            <div class="admin-info">
+                <span id="admin-name">Cargando...</span>
+                <i class="fas fa-user-circle fa-lg"></i>
+            </div>
+        </header>
+
+        <div id="dashboard" class="content-section active">
+            <div class="kpi-grid">
+                <div class="card">
+                    <div class="icon-box blue"><i class="fas fa-users"></i></div>
+                    <div><h4>Usuarios Totales</h4><p class="value" id="kpi-users">-</p></div>
+                </div>
+                <div class="card">
+                    <div class="icon-box green"><i class="fas fa-tasks"></i></div>
+                    <div><h4>Proyectos Activos</h4><p class="value" id="kpi-projects">-</p></div>
+                </div>
+                <div class="card">
+                    <div class="icon-box orange"><i class="fas fa-euro-sign"></i></div>
+                    <div><h4>Presupuesto Global</h4><p class="value" id="kpi-budget">-</p></div>
                 </div>
             </div>
+        </div>
 
-            <div id="users" class="content-section">
-                <h2>Usuarios Recientes</h2>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Fecha de Registro</th>
-                                <th>Rol</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Carlos Sánchez</td>
-                                <td>carlos.sanchez@example.com</td>
-                                <td>2024-05-20</td>
-                                <td>Cliente</td>
-                                <td><button class="btn-edit">Editar</button> <button class="btn-delete">Eliminar</button></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Ana García</td>
-                                <td>ana.garcia@example.com</td>
-                                <td>2024-05-19</td>
-                                <td>Cliente</td>
-                                <td><button class="btn-edit">Editar</button> <button class="btn-delete">Eliminar</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div id="users" class="content-section" style="display:none;">
+            <div class="section-header"><h2>Gestión de Usuarios</h2></div>
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                    <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Rol</th><th>Registro</th><th>Acciones</th></tr>
+                    </thead>
+                    <tbody id="user-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="projects" class="content-section" style="display:none;">
+            <div class="section-header">
+                <h2>Gestión de Proyectos</h2>
+                <button class="btn-new" onclick="openModal('create')"><i class="fas fa-plus"></i> Nuevo Proyecto</button>
+            </div>
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                    <tr>
+                        <th>ID Ref</th><th>Proyecto</th><th>Jefe</th><th>Equipo</th><th>Estado</th><th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="project-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="create-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title">✨ Nuevo Proyecto</h2>
+
+        <form id="project-form">
+            <input type="hidden" id="p-id">
+
+            <div class="form-group">
+                <label>Nombre del Proyecto</label>
+                <input type="text" id="p-name" required>
             </div>
 
-            <div id="products" class="content-section">
-                <h2>Gestión de Productos</h2>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Stock</th>
-                                <th>Categoría</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Producto A</td>
-                                <td>$50</td>
-                                <td>100</td>
-                                <td>Categoría 1</td>
-                                <td><button class="btn-edit">Editar</button> <button class="btn-delete">Eliminar</button></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Producto B</td>
-                                <td>$75</td>
-                                <td>50</td>
-                                <td>Categoría 2</td>
-                                <td><button class="btn-edit">Editar</button> <button class="btn-delete">Eliminar</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Presupuesto (€)</label>
+                    <input type="number" id="p-budget" required>
+                </div>
+                <div class="form-group">
+                    <label>Fecha Límite</label>
+                    <input type="date" id="p-deadline" required>
                 </div>
             </div>
 
-            <div id="orders" class="content-section">
-                <h2>Gestión de Pedidos</h2>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID Pedido</th>
-                                <th>Cliente</th>
-                                <th>Fecha</th>
-                                <th>Total</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>101</td>
-                                <td>Carlos Sánchez</td>
-                                <td>2024-05-21</td>
-                                <td>$125</td>
-                                <td>Procesando</td>
-                                <td><button class="btn-edit">Ver</button></td>
-                            </tr>
-                            <tr>
-                                <td>102</td>
-                                <td>Ana García</td>
-                                <td>2024-05-21</td>
-                                <td>$75</td>
-                                <td>Enviado</td>
-                                <td><button class="btn-edit">Ver</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea id="p-desc" rows="3" required></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Jefe de Proyecto</label>
+                    <select id="p-manager" required><option value="">Cargando...</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Estado</label>
+                    <select id="p-status">
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="En curso">En curso</option>
+                        <option value="En espera">En espera</option>
+                        <option value="Completado">Completado</option>
+                    </select>
                 </div>
             </div>
 
-            <div id="reports" class="content-section">
-                <h2>Informes</h2>
+            <div class="form-group">
+                <label>Equipo de Trabajo</label>
+                <div id="members-checkboxes" class="checkbox-group"></div>
             </div>
 
-            <div id="settings" class="content-section">
-                <h2>Configuración</h2>
-            </div>
-        </main>
+            <button type="submit" class="btn-submit">Guardar Cambios</button>
+        </form>
     </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('.sidebar-menu a');
-            const sections = document.querySelectorAll('.content-section');
-            const header = document.querySelector('.main-header h1');
-
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('data-target');
-                    const targetSection = document.getElementById(targetId);
-
-                    // Update active link
-                    links.forEach(l => l.parentElement.classList.remove('active'));
-                    this.parentElement.classList.add('active');
-
-                    // Show/hide sections
-                    sections.forEach(section => {
-                        if (section.id === targetId) {
-                            section.classList.add('active');
-                        } else {
-                            section.classList.remove('active');
-                        }
-                    });
-
-                    // Update header
-                    header.textContent = this.textContent;
-                });
-            });
-        });
-    </script>
+<script>
+    function showSection(id) {
+        document.querySelectorAll('.content-section').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.sidebar-menu li').forEach(el => el.classList.remove('active'));
+        document.getElementById(id).style.display = 'block';
+        event.currentTarget.parentElement.classList.add('active');
+    }
+</script>
+<script type="module" src="/src/admin.js"></script>
 </body>
 </html>

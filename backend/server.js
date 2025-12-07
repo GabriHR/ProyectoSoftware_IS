@@ -7,112 +7,197 @@ const multer = require('multer');
 const app = express();
 const PORT = 3000;
 
-// --- CONFIGURACIÓN ---
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 app.use('/src', express.static(path.join(__dirname, '../frontend/src')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Configuración de subida de archivos (Multer)
+// --- RUTAS DE ARCHIVOS JSON ---
+const projectsFile = path.join(__dirname, 'projects.json');
+const usersFile = path.join(__dirname, 'users.json');
+
+// --- HELPERS PARA LEER/ESCRIBIR ---
+function readJSON(file) {
+    if (!fs.existsSync(file)) return [];
+    try {
+        return JSON.parse(fs.readFileSync(file, 'utf-8'));
+    } catch (e) { return []; }
+}
+
+function writeJSON(file, data) {
+    fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
+
+// --- CONFIGURACIÓN MULTER (Archivos) ---
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const dir = path.join(__dirname, 'uploads');
-        if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-        cb(null, dir);
+        cb(null, uploadsDir);
     },
     filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
 });
 const upload = multer({ storage });
 
-// --- GESTIÓN DE BASE DE DATOS SEGURA ---
-const projectsFile = path.join(__dirname, 'projects.json');
+// ================= API USUARIOS =================
 
-// Función auxiliar para leer datos sin que explote el servidor
-function getProjectsSafe() {
-    if (!fs.existsSync(projectsFile)) {
-        // Si no existe, devolvemos array vacío
-        return [];
-    }
-    try {
-        const data = fs.readFileSync(projectsFile, 'utf-8');
-        return JSON.parse(data) || [];
-    } catch (error) {
-        console.error("Error leyendo JSON:", error);
-        return [];
-    }
-}
-
-// --- RUTAS API ---
-
-// 1. OBTENER PROYECTOS
-app.get('/api/projects', (req, res) => {
-    res.json(getProjectsSafe());
+// 1. Obtener todos los usuarios
+app.get('/api/users', (req, res) => {
+    const users = readJSON(usersFile);
+    // Por seguridad, no devolvemos contraseñas
+    const safeUsers = users.map(({ password, ...u }) => u);
+    res.json(safeUsers);
 });
 
-// 2. OBTENER UN PROYECTO
+// 2. Eliminar usuario
+app.delete('/api/users/:id', (req, res) => {
+    let users = readJSON(usersFile);
+    const initialLength = users.length;
+    // Usamos!= para que coincida aunque uno sea string y otro number
+    users = users.filter(u => u.id !== req.params.id);
+
+    if (users.length < initialLength) {
+        writeJSON(usersFile, users);
+        res.json({ success: true });
+    } else {
+        res.status(404).json({ error: "Usuario no encontrado" });
+    }
+});
+
+// 3. Login
+app.post('/api/users/login', (req, res) => {
+    const { email, password } = req.body;
+    const users = readJSON(usersFile);
+    const user = users.find(u => u.email === email && u.password === password);
+    if (user) res.json({ success: true, user });
+    else res.status(401).json({ success: false, message: "Credenciales incorrectas" });
+});
+
+// 4. Registro
+app.post('/api/users/register', (req, res) => {
+    const users = readJSON(usersFile);
+    const { username, email, password } = req.body;
+
+    if (users.find(u => u.email === email)) {
+        return res.status(400).json({ message: "Usuario ya existe" });
+    }
+
+    const newUser = {
+        id: Date.now(),
+        username,
+        email,
+        password,
+        role: 'user',
+        joined: new Date().toISOString().split('T')[0]
+    };
+
+    users.push(newUser);
+    writeJSON(usersFile, users);
+    res.json({ success: true, user: newUser });
+});
+
+// ================= API PROYECTOS (CRUD COMPLETO) =================
+
+// 1. LEER TODOS
+app.get('/api/projects', (req, res) => res.json(readJSON(projectsFile)));
+
+// 2. LEER UNO
 app.get('/api/projects/:id', (req, res) => {
-    const projects = getProjectsSafe();
-    const project = projects.find(p => p.id == req.params.id);
-    if(project) res.json(project);
-    else res.status(404).json({error: "No encontrado"});
+    // Usamos == para comparar string (url) con number (json)
+    const project = readJSON(projectsFile).find(p => p.id === req.params.id);
+    project ? res.json(project) : res.status(404).json({error: "No encontrado"});
 });
 
-// 3. CREAR PROYECTO (La que te estaba fallando)
+// 3. CREAR PROYECTO
 app.post('/api/projects', (req, res) => {
-    try {
-        const projects = getProjectsSafe();
-        const newProject = req.body;
+    const projects = readJSON(projectsFile);
+    const newProject = {
+        id: Date.now(),
+        displayId: `PRJ-${new Date().getFullYear()}-${Math.floor(Math.random()*1000)}`,
+        ...req.body,
+        files: [],
+        progress: 0,
+        spent: 0
+    };
 
-        // Asignamos ID y valores por defecto
-        newProject.id = Date.now();
-        newProject.displayId = `PRJ-${new Date().getFullYear()}-${Math.floor(Math.random() * 1000)}`;
-        newProject.files = [];
-        newProject.members = [];
-        newProject.risks = [];
-        newProject.tasks = [];
-        newProject.progress = 0;
-        newProject.budget = 0;
-        newProject.spent = 0;
+    projects.push(newProject);
+    writeJSON(projectsFile, projects);
+    res.json({ success: true, project: newProject });
+});
 
-        // Guardamos
-        projects.push(newProject);
-        fs.writeFileSync(projectsFile, JSON.stringify(projects, null, 2));
+// 4. EDITAR PROYECTO
+app.put('/api/projects/:id', (req, res) => {
+    const projects = readJSON(projectsFile);
+    // Usamos == para comparar string con number sin problemas
+    const index = projects.findIndex(p => p.id === req.params.id);
 
-        console.log("✅ Proyecto creado:", newProject.name);
-        res.json({ success: true, project: newProject });
-    } catch (error) {
-        console.error("❌ Error guardando proyecto:", error);
-        res.status(500).json({ message: "Error interno al guardar" });
+    if (index !== -1) {
+        // Mantenemos el ID original y los archivos, actualizamos el resto
+        projects[index] = {
+            ...projects[index], // Mantener datos viejos
+            ...req.body,        // Sobrescribir con datos nuevos
+            id: projects[index].id, // Asegurar que el ID no cambia
+            files: projects[index].files // Asegurar que los archivos no se pierden
+        };
+
+        writeJSON(projectsFile, projects);
+        console.log(`✅ Proyecto ${projects[index].id} actualizado`);
+        res.json({ success: true, project: projects[index] });
+    } else {
+        res.status(404).json({ error: "Proyecto no encontrado" });
     }
 });
 
-// 4. SUBIR ARCHIVO
-app.post('/api/upload/:id', upload.single('file'), (req, res) => {
-    try {
-        const projects = getProjectsSafe();
-        const index = projects.findIndex(p => p.id === req.params.id);
+// 5. ELIMINAR PROYECTO (¡NUEVO!)
+app.delete('/api/projects/:id', (req, res) => {
+    let projects = readJSON(projectsFile);
+    const initialLength = projects.length;
+    projects = projects.filter(p => p.id !== req.params.id);
 
-        if (index !== -1 && req.file) {
-            if(!projects[index].files) projects[index].files = [];
-            projects[index].files.push({
-                name: req.file.originalname,
-                url: '/uploads/' + req.file.filename,
-                date: new Date().toLocaleDateString()
-            });
-            fs.writeFileSync(projectsFile, JSON.stringify(projects, null, 2));
-            res.json({ success: true, file: projects[index].files.slice(-1)[0] });
-        } else {
-            res.status(400).json({ error: "Proyecto no encontrado o falta archivo" });
-        }
-    } catch (e) { res.status(500).json({error: "Error subida"}); }
+    if (projects.length < initialLength) {
+        writeJSON(projectsFile, projects);
+        res.json({ success: true });
+    } else {
+        res.status(404).json({ error: "No encontrado" });
+    }
 });
 
-// --- VISTAS ---
+// 6. SUBIR ARCHIVO
+app.post('/api/upload/:id', upload.single('file'), (req, res) => {
+    const projects = readJSON(projectsFile);
+    const index = projects.findIndex(p => p.id === req.params.id);
+    if (index !== -1 && req.file) {
+        if(!projects[index].files) projects[index].files = [];
+        projects[index].files.push({
+            id: Date.now(),
+            name: req.file.originalname,
+            url: '/uploads/' + req.file.filename,
+            date: new Date().toLocaleDateString()
+        });
+        writeJSON(projectsFile, projects);
+        res.json({ success: true });
+    } else res.status(400).json({ error: "Error" });
+});
+
+// 7. BORRAR ARCHIVO
+app.delete('/api/upload/:pid/:fid', (req, res) => {
+    const projects = readJSON(projectsFile);
+    const pIndex = projects.findIndex(p => p.id === req.params.pid);
+    if(pIndex !== -1) {
+        projects[pIndex].files = projects[pIndex].files.filter(f => f.id !== req.params.fid);
+        writeJSON(projectsFile, projects);
+        res.json({success: true});
+    } else res.status(404).json({error: "No encontrado"});
+});
+
+// ================= RUTAS VISTAS =================
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../frontend/public/html/index.html')));
 app.get('/login', (req, res) => res.sendFile(path.join(__dirname, '../frontend/public/html/login.html')));
 app.get('/register', (req, res) => res.sendFile(path.join(__dirname, '../frontend/public/html/register.html')));
 app.get('/user', (req, res) => res.sendFile(path.join(__dirname, '../frontend/public/html/user.html')));
 app.get('/tablero', (req, res) => res.sendFile(path.join(__dirname, '../frontend/public/html/tablero.html')));
+app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, '../frontend/public/html/admin.html')));
 
-app.listen(PORT, () => console.log(`🚀 SERVIDOR LISTO: http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Servidor Admin listo en: http://localhost:${PORT}`));
