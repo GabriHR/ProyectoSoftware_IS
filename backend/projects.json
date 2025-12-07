@@ -6,7 +6,7 @@
     "status": "En curso",
     "progress": 65,
     "deadline": "2025-02-10",
-    "manager": "María López",
+    "manager": "Gabriel Hernanz",
     "description": "Rediseño completo de la interfaz de usuario (UI/UX) para el portal de clientes.",
     "budget": 25000,
     "spent": 14500,
@@ -29,8 +29,8 @@
     "files": [],
     "members": [
       {
-        "name": "Gabriel H.",
-        "role": "Dev"
+        "name": "Rodrigo Yepez",
+        "role": "user"
       }
     ]
   },

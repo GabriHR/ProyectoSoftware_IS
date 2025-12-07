@@ -55,8 +55,8 @@ app.get('/api/users', (req, res) => {
 app.delete('/api/users/:id', (req, res) => {
     let users = readJSON(usersFile);
     const initialLength = users.length;
-    // Usamos!= para que coincida aunque uno sea string y otro number
-    users = users.filter(u => u.id !== req.params.id);
+    // Usamos != para que coincida aunque uno sea string y otro number
+    users = users.filter(u => u.id != req.params.id);
 
     if (users.length < initialLength) {
         writeJSON(usersFile, users);
@@ -106,7 +106,7 @@ app.get('/api/projects', (req, res) => res.json(readJSON(projectsFile)));
 // 2. LEER UNO
 app.get('/api/projects/:id', (req, res) => {
     // Usamos == para comparar string (url) con number (json)
-    const project = readJSON(projectsFile).find(p => p.id === req.params.id);
+    const project = readJSON(projectsFile).find(p => p.id == req.params.id);
     project ? res.json(project) : res.status(404).json({error: "No encontrado"});
 });
 
@@ -127,34 +127,32 @@ app.post('/api/projects', (req, res) => {
     res.json({ success: true, project: newProject });
 });
 
-// 4. EDITAR PROYECTO
+// 4. EDITAR PROYECTO (CORREGIDO)
 app.put('/api/projects/:id', (req, res) => {
     const projects = readJSON(projectsFile);
-    // Usamos == para comparar string con number sin problemas
-    const index = projects.findIndex(p => p.id === req.params.id);
+    // CORREGIDO: Usar == para encontrar el ID aunque venga como texto
+    const index = projects.findIndex(p => p.id == req.params.id);
 
     if (index !== -1) {
-        // Mantenemos el ID original y los archivos, actualizamos el resto
         projects[index] = {
-            ...projects[index], // Mantener datos viejos
-            ...req.body,        // Sobrescribir con datos nuevos
-            id: projects[index].id, // Asegurar que el ID no cambia
-            files: projects[index].files // Asegurar que los archivos no se pierden
+            ...projects[index],
+            ...req.body,
+            id: projects[index].id, // Asegurar ID original
+            files: projects[index].files // Asegurar archivos
         };
-
         writeJSON(projectsFile, projects);
-        console.log(`✅ Proyecto ${projects[index].id} actualizado`);
         res.json({ success: true, project: projects[index] });
     } else {
         res.status(404).json({ error: "Proyecto no encontrado" });
     }
 });
 
-// 5. ELIMINAR PROYECTO (¡NUEVO!)
+// 5. BORRAR PROYECTO (CORREGIDO)
 app.delete('/api/projects/:id', (req, res) => {
     let projects = readJSON(projectsFile);
     const initialLength = projects.length;
-    projects = projects.filter(p => p.id !== req.params.id);
+    // CORREGIDO: Usar !=
+    projects = projects.filter(p => p.id != req.params.id);
 
     if (projects.length < initialLength) {
         writeJSON(projectsFile, projects);
@@ -167,7 +165,8 @@ app.delete('/api/projects/:id', (req, res) => {
 // 6. SUBIR ARCHIVO
 app.post('/api/upload/:id', upload.single('file'), (req, res) => {
     const projects = readJSON(projectsFile);
-    const index = projects.findIndex(p => p.id === req.params.id);
+    // CORREGIDO: Usar ==
+    const index = projects.findIndex(p => p.id == req.params.id);
     if (index !== -1 && req.file) {
         if(!projects[index].files) projects[index].files = [];
         projects[index].files.push({
@@ -184,9 +183,10 @@ app.post('/api/upload/:id', upload.single('file'), (req, res) => {
 // 7. BORRAR ARCHIVO
 app.delete('/api/upload/:pid/:fid', (req, res) => {
     const projects = readJSON(projectsFile);
-    const pIndex = projects.findIndex(p => p.id === req.params.pid);
+    // CORREGIDO: Usar ==
+    const pIndex = projects.findIndex(p => p.id == req.params.pid);
     if(pIndex !== -1) {
-        projects[pIndex].files = projects[pIndex].files.filter(f => f.id !== req.params.fid);
+        projects[pIndex].files = projects[pIndex].files.filter(f => f.id != req.params.fid);
         writeJSON(projectsFile, projects);
         res.json({success: true});
     } else res.status(404).json({error: "No encontrado"});
