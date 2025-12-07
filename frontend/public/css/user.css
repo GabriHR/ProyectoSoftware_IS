@@ -214,6 +214,35 @@ body {
 }
 #modal-members-list li:last-child { border-bottom: none; }
 
+/* --- ESTILOS PARA EL PDF --- */
+body.generating-pdf .dashboard-grid {
+    display: block !important; /* Quita el grid de columnas */
+}
+
+body.generating-pdf .left-col,
+body.generating-pdf .right-col {
+    width: 100% !important; /* Que ocupen t odo el ancho */
+    margin-bottom: 20px;
+}
+
+body.generating-pdf .card-box {
+    break-inside: avoid; /* Evita que una tarjeta se parta por la mitad entre dos hojas */
+    box-shadow: none;    /* Quita sombras para que se vea más limpio en papel */
+    border: 1px solid #eee;
+}
+
+body.generating-pdf .board-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+}
+
+/* Ocultar botones y navegación en el PDF */
+body.generating-pdf .top-nav,
+body.generating-pdf .btn {
+    display: none !important;
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 1100px) {
     .dashboard-grid { grid-template-columns: 1fr 2fr; }
