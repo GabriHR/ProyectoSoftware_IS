@@ -25,6 +25,9 @@ a:hover {
     padding: 1rem 2rem;
     background-color: #1e1e1e;
     border-bottom: 1px solid #333;
+    position: sticky; /* Para que el menú se quede fijo al hacer scroll */
+    top: 0;
+    z-index: 1000;
 }
 
 .logo a {
@@ -53,7 +56,7 @@ a:hover {
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 4rem 2rem;
+    padding: 6rem 2rem; /* Un poco más de espacio vertical */
     background-color: #1e1e1e;
 }
 
@@ -72,13 +75,13 @@ a:hover {
 
 /* Features Section */
 .features {
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
     text-align: center;
 }
 
 .features h2 {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     color: #ffffff;
 }
 
@@ -102,6 +105,7 @@ a:hover {
 .feature-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-color: #bb86fc; /* Pequeño detalle al hover */
 }
 
 .feature-card h3 {
@@ -114,48 +118,98 @@ a:hover {
     color: #b0b0b0;
 }
 
-/* Gallery Section */
-.gallery {
-    padding: 3rem 2rem;
+/* Gallery Section (Unificada y Corregida) */
+.gallery-section {
+    padding: 4rem 2rem;
+    background-color: #181818; /* Ligeramente diferente para separar secciones */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     text-align: center;
 }
 
-.gallery h2 {
+.gallery-section h2 {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: #ffffff;
 }
 
-.gallery-grid {
+.solution-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Un poco más ancho para que se vean bien */
+    gap: 20px;
+    margin-top: 30px;
 }
 
-.gallery-grid img {
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 220px; /* Altura fija para uniformidad */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(187, 134, 252, 0.2); /* Sombra morada al hover */
+}
+
+.gallery-item img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    height: 100%;
+    object-fit: cover; /* CLAVE: Recorta la imagen para llenar el hueco sin estirarse */
+    display: block;
+    transition: transform 0.5s ease;
 }
 
-.gallery-grid img:hover {
-    transform: scale(1.05);
-    opacity: 0.8;
+.gallery-item:hover img {
+    transform: scale(1.1); /* Zoom suave al pasar el ratón */
+}
+
+/* Efecto Overlay: Texto al pasar el ratón */
+.gallery-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Cubre t odo para centrar el texto mejor */
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+    color: white;
+    display: flex;
+    align-items: flex-end; /* Texto abajo */
+    justify-content: center;
+    padding-bottom: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.gallery-item .overlay span {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #bb86fc;
 }
 
 /* About Us Section */
 .about-us {
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
     text-align: center;
     background-color: #1e1e1e;
+    margin-top: 2rem;
 }
 
 .about-us h2 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: #ffffff;
 }
 
@@ -164,14 +218,14 @@ a:hover {
     max-width: 800px;
     margin: 0 auto;
     color: #b0b0b0;
+    line-height: 1.8;
 }
 
 /* Footer */
 .main-footer {
     text-align: center;
     padding: 2rem;
-    margin-top: 2rem;
-    background-color: #1e1e1e;
+    background-color: #0f0f0f; /* Un poco más oscuro que el fondo */
     border-top: 1px solid #333;
 }
 
@@ -184,10 +238,27 @@ a:hover {
 
 .social-links a {
     font-size: 1.5rem;
-    margin: 0 0.5rem;
+    margin: 0 0.8rem;
     color: #b0b0b0;
+    transition: color 0.3s, transform 0.3s;
 }
 
 .social-links a:hover {
     color: #bb86fc;
+    transform: translateY(-3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .features-grid, .solution-gallery {
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
+    }
+
+    .gallery-item {
+        height: 250px; /* Más alto en móvil para que se vea bien */
+    }
 }

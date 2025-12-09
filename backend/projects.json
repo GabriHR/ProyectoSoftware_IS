@@ -206,21 +206,5 @@
     "progress": 0,
     "budget": 0,
     "spent": 0
-  },
-  {
-    "name": "Proyecto Prueba 2",
-    "manager": "Rodrigo Yepes",
-    "deadline": "2026-06-26",
-    "status": "Pendiente",
-    "description": "Prueba2.",
-    "progress": 0,
-    "budget": 0,
-    "spent": 0,
-    "tasks": [],
-    "risks": [],
-    "files": [],
-    "id": 1764698712311,
-    "displayId": "PRJ-2025-865",
-    "members": []
   }
 ]

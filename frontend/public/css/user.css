@@ -243,6 +243,19 @@ body.generating-pdf .btn {
     display: none !important;
 }
 
+/* Estilo para botón de peligro (Borrar) */
+.btn.danger {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    margin-left: 5px;
+}
+
+.btn.danger:hover {
+    background-color: #fca5a5;
+    color: #7f1d1d;
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 1100px) {
     .dashboard-grid { grid-template-columns: 1fr 2fr; }
