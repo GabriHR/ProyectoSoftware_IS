@@ -5,6 +5,16 @@ const fs = require('fs');
 const multer = require('multer');
 
 const app = express();
+app.use((req, res, next) => {
+    // Elimina la cabecera que te está dando problemas
+    res.removeHeader("Content-Security-Policy");
+    res.removeHeader("X-Content-Security-Policy");
+    res.removeHeader("X-WebKit-CSP");
+
+    // Opcional: Si lo anterior no basta, esto autoriza T ODO (solo para desarrollo)
+    res.setHeader("Content-Security-Policy", "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;");
+    next();
+});
 const PORT = 3000;
 
 app.use(cors());
