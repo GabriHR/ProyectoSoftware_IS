@@ -6,7 +6,7 @@
     "status": "En curso",
     "progress": 65,
     "deadline": "2025-02-10",
-    "manager": "Gabriel Hernanz",
+    "manager": "Carmen Ruiz",
     "description": "Rediseño completo de la interfaz de usuario (UI/UX) para el portal de clientes.",
     "budget": 25000,
     "spent": 14500,
@@ -192,19 +192,18 @@
     "members": []
   },
   {
-    "name": "Proyecto Prueba 1",
-    "manager": "Gabriel Hernanz",
-    "deadline": "2025-12-21",
-    "status": "En espera",
-    "description": "Prueba1 ",
-    "id": 1764698461792,
-    "displayId": "PRJ-2025-866",
-    "files": [],
-    "members": [],
-    "risks": [],
-    "tasks": [],
+    "id": 1765452092258,
+    "displayId": "PRJ-2025-116",
+    "name": "Prueba12313",
+    "manager": "Rodrigo Yepes",
+    "deadline": "2025-12-26",
+    "status": "En curso",
+    "description": "asdad123",
     "progress": 0,
     "budget": 0,
-    "spent": 0
+    "spent": 0,
+    "tasks": [],
+    "risks": [],
+    "files": []
   }
 ]
