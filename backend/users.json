@@ -40,14 +40,6 @@
     "joined": "2024-01-10"
   },
   {
-    "id": 7,
-    "username": "David P.",
-    "email": "david.sysadmin@taskflow.com",
-    "password": "123",
-    "role": "user",
-    "joined": "2024-02-28"
-  },
-  {
     "id": 8,
     "username": "Laura Gil",
     "email": "laura.mkt@taskflow.com",

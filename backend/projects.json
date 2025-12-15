@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "name": "Proyecto Alpha",
+    "name": "Proyecto Alpha1",
     "displayId": "PRJ-AX-992",
-    "status": "En curso",
+    "status": "Pendiente",
     "progress": 65,
     "deadline": "2025-02-10",
-    "manager": "Carmen Ruiz",
+    "manager": "Alejandro Sanz",
     "description": "Rediseño completo de la interfaz de usuario (UI/UX) para el portal de clientes.",
     "budget": 25000,
     "spent": 14500,
@@ -29,7 +29,15 @@
     "files": [],
     "members": [
       {
+        "name": "Gabriel Hernanz",
+        "role": "user"
+      },
+      {
         "name": "Rodrigo Yepez",
+        "role": "user"
+      },
+      {
+        "name": "Roberto Díaz",
         "role": "user"
       }
     ]
@@ -199,6 +207,21 @@
     "deadline": "2025-12-26",
     "status": "En curso",
     "description": "asdad123",
+    "progress": 0,
+    "budget": 0,
+    "spent": 0,
+    "tasks": [],
+    "risks": [],
+    "files": []
+  },
+  {
+    "id": 1765455750920,
+    "displayId": "PRJ-2025-853",
+    "name": "Proyecto Prueba 1",
+    "manager": "Gabriel Hernanz",
+    "deadline": "2025-12-17",
+    "status": "En curso",
+    "description": "asdad",
     "progress": 0,
     "budget": 0,
     "spent": 0,
