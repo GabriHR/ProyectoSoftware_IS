@@ -12,6 +12,19 @@ body {
     text-align: center;
 }
 
+.home-logo {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.home-logo a {
+    color: #333;
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
 .register-box {
     background: white;
     padding: 40px;
