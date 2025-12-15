@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "name": "Proyecto Alpha1",
+    "name": "Proyecto Alpha",
     "displayId": "PRJ-AX-992",
     "status": "Pendiente",
     "progress": 65,
     "deadline": "2025-02-10",
-    "manager": "Alejandro Sanz",
+    "manager": "Rodrigo Yepez",
     "description": "Rediseño completo de la interfaz de usuario (UI/UX) para el portal de clientes.",
     "budget": 25000,
     "spent": 14500,
@@ -34,10 +34,6 @@
       },
       {
         "name": "Rodrigo Yepez",
-        "role": "user"
-      },
-      {
-        "name": "Roberto Díaz",
         "role": "user"
       }
     ]
@@ -228,5 +224,32 @@
     "tasks": [],
     "risks": [],
     "files": []
+  },
+  {
+    "id": 1765794220459,
+    "displayId": "PRJ-2025-997",
+    "name": "Prueba2",
+    "budget": 123131,
+    "deadline": "2026-07-16",
+    "description": "sdqdsa124343",
+    "manager": "Jefe Supremo",
+    "status": "En curso",
+    "members": [
+      {
+        "name": "Jefe Supremo",
+        "role": "admin"
+      },
+      {
+        "name": "Gabriel Hernanz",
+        "role": "user"
+      },
+      {
+        "name": "Rodrigo Yepez",
+        "role": "user"
+      }
+    ],
+    "files": [],
+    "progress": 0,
+    "spent": 0
   }
 ]
