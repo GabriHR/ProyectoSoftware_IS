@@ -211,18 +211,22 @@ body {
     margin: 0;
 }
 
-.btn-new {
-    background: var(--success);
+.btn-new,
+.btn-submit {
     color: white;
     border: none;
-    padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-new {
+    background: var(--success);
+    padding: 10px 20px;
     font-size: 0.95rem;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: background 0.3s;
 }
 
 .btn-new:hover {
@@ -396,15 +400,10 @@ input:focus, select:focus, textarea:focus {
 .btn-submit {
     width: 100%;
     background: var(--accent);
-    color: white;
-    border: none;
     padding: 12px;
-    border-radius: 6px;
     font-size: 1rem;
     font-weight: bold;
-    cursor: pointer;
     margin-top: 10px;
-    transition: background 0.3s;
 }
 
 .btn-submit:hover { background: #2980b9; }

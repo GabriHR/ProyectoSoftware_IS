@@ -73,13 +73,16 @@ a:hover {
     color: #b0b0b0;
 }
 
-/* Features Section */
-.features {
+/* Features & About Us Section */
+.features,
+.about-us {
     padding: 4rem 2rem;
     text-align: center;
 }
 
-.features h2 {
+.features h2,
+.about-us h2,
+.gallery-section h2 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: #ffffff;
@@ -118,7 +121,7 @@ a:hover {
     color: #b0b0b0;
 }
 
-/* Gallery Section (Unificada y Corregida) */
+/* Gallery Section */
 .gallery-section {
     padding: 4rem 2rem;
     background-color: #181818; /* Ligeramente diferente para separar secciones */
@@ -128,12 +131,6 @@ a:hover {
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-}
-
-.gallery-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #ffffff;
 }
 
 .solution-gallery {
@@ -201,16 +198,8 @@ a:hover {
 
 /* About Us Section */
 .about-us {
-    padding: 4rem 2rem;
-    text-align: center;
     background-color: #1e1e1e;
     margin-top: 2rem;
-}
-
-.about-us h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: #ffffff;
 }
 
 .about-us p {

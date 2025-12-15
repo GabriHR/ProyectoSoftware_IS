@@ -81,7 +81,8 @@ body {
     margin-top: 20px;
 }
 
-.register-link p {
+.register-link p,
+.register-link p a {
     color: #fff;
 }
 
