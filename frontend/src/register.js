@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     // --- AQUÍ ESTÁ LA REDIRECCIÓN QUE PEDISTE ---
                     alert("¡Cuenta creada! Redirigiendo al inicio de sesión...");
-                    window.location.href = 'login.html';
+                    window.location.href = '/login';
                 } else {
                     alert("Error: " + data.message);
                 }

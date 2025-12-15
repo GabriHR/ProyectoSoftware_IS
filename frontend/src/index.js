@@ -5,7 +5,7 @@ const activeUser = JSON.parse(localStorage.getItem('activeUser'));
 
 if (!activeUser) {
     // Si no hay usuario, ¡fuera de aquí! Al login.
-    window.location.href = 'login.html';
+    window.location.href = '/login';
 } else {
     // Si hay usuario, puedes saludarlo
     console.log(`Bienvenido de nuevo, ${activeUser.username}`);
@@ -15,5 +15,5 @@ if (!activeUser) {
 // Botón de Cerrar Sesión (Logout)
 function logout() {
     localStorage.removeItem('activeUser');
-    window.location.href = 'login.html';
+    window.location.href = '/login';
 }
