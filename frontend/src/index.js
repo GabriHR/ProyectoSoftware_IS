@@ -7,7 +7,7 @@ if (activeUser) {
     // Aquí cargarías tus tareas (TaskFlow)
 }
 
-// Botón de Cerrar Sesión (Logout)
+// Botón de cerrar Sesión (Logout)
 function logout() {
     localStorage.removeItem('activeUser');
     window.location.href = 'login.html';
