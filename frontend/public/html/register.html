@@ -8,9 +8,12 @@
 </head>
 <body>
     <div class="register-container">
+        <div class="home-logo">
+            <a href="/">TaskFlow</a>
+        </div>
         <div class="register-box">
             <h2>Crear Cuenta</h2>
-            <form action="/api/register" method="POST">
+            <form id="register-form">
                 <div class="input-group">
                     <input type="text" id="username" name="username" required>
                     <label for="username">Nombre de usuario</label>
@@ -30,10 +33,11 @@
                 <button type="submit" class="btn">Registrarse</button>
             </form>
             <div class="login-link">
-                <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a></p>
+                <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></p>
             </div>
         </div>
     </div>
-<script src="/frontend/src/register.js"></script>
+<script src="/src/register.js"></script>
+
 </body>
 </html>

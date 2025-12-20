@@ -1,5 +1,6 @@
 # ProyectoSoftware_IS
 * Link con acceso al repositorio: https://github.com/GabriHR/ProyectoSoftware_IS.git
+* Link con acceso al doc de Google con la presentación: https://docs.google.com/presentation/d/1bqC0LLpAtEO6L8_XAzY6nefMoZctQMWdV-i5Xj27bzY/edit?slide=id.p13#slide=id.p13
 
 ### Integrantes del grupo
 * Gabriel Hernanz Rodríguez
@@ -22,7 +23,7 @@ Gestor web inteligente de tareas y flujo de trabajo para equipos pequeños.
 - Panel de proyectos.
 - Gestor de tareas (CRUD).
 - Panel de métricas y reportes.
-- *Tablero Kanban.
+- Tablero Kanban.
 ---
 ### VALOR PARA UNA EMPRESA
 

@@ -40,7 +40,15 @@ body {
 
 .top-nav { display: flex; align-items: center; gap: 12px; }
 .top-nav .username { font-weight: 600; }
-.top-nav select { padding: 8px; border-radius: 8px; border: 1px solid #e6eef7; background: #fff; }
+
+.top-nav select,
+.panel-header input[type="search"] {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #e6eef7;
+}
+.top-nav select { background: #fff; }
+
 
 .btn {
     padding: 8px 12px;
@@ -68,18 +76,26 @@ body {
     align-items: start;
 }
 
-/* --- CARDS --- */
+/* --- CARDS & PANELS --- */
 .cards { display: flex; flex-direction: column; gap: 12px; }
-.card { background: var(--card); padding: 14px; border-radius: 12px; box-shadow: var(--shadow); }
+
+.card,
+.projects-panel,
+.detail-panel {
+    background: var(--card);
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
 .card-title { color: var(--muted); font-size: 0.9rem; }
 .card-value { font-size: 1.6rem; font-weight: 700; margin-top: 8px; color: #0b2540; }
 
 /* --- PROJECTS PANEL --- */
-.projects-panel { background: var(--card); padding: 14px; border-radius: 12px; box-shadow: var(--shadow); }
 .panel-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .panel-header h3 { margin: 0; }
 .panel-header .actions { display: flex; gap: 8px; align-items: center; }
-.panel-header input[type="search"] { padding: 8px; border-radius: 8px; border: 1px solid #e6eef7; width: 220px; }
+.panel-header input[type="search"] { width: 220px; }
 
 .projects-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.95rem; }
 .projects-table thead th { text-align: left; padding: 10px 8px; color: var(--muted); border-bottom: 1px solid #eef3f8; }
@@ -108,10 +124,6 @@ body {
 
 /* --- DETAIL PANEL --- */
 .detail-panel {
-    background: var(--card);
-    padding: 14px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
     position: sticky;
     top: 90px;
     height: max-content;

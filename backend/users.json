@@ -24,36 +24,12 @@
     "joined": "2024-03-10"
   },
   {
-    "id": 4,
-    "username": "Sofía Arriaga",
-    "email": "sofia@taskflow.com",
-    "password": "123",
-    "role": "user",
-    "joined": "2024-03-22"
-  },
-  {
-    "id": 5,
-    "username": "Roberto Díaz",
-    "email": "roberto.ai@taskflow.com",
-    "password": "123",
-    "role": "user",
-    "joined": "2024-04-05"
-  },
-  {
     "id": 6,
     "username": "Elena Torres",
     "email": "elena.hr@taskflow.com",
     "password": "123",
     "role": "user",
     "joined": "2024-01-10"
-  },
-  {
-    "id": 7,
-    "username": "David P.",
-    "email": "david.sysadmin@taskflow.com",
-    "password": "123",
-    "role": "user",
-    "joined": "2024-02-28"
   },
   {
     "id": 8,
@@ -118,5 +94,13 @@
     "password": "123",
     "role": "user",
     "joined": "2024-09-15"
+  },
+  {
+    "id": 1765794764621,
+    "username": "konrak",
+    "email": "konrak@taskflow.com",
+    "password": "1234",
+    "role": "user",
+    "joined": "2025-12-15"
   }
 ]

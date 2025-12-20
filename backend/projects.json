@@ -3,10 +3,10 @@
     "id": 1,
     "name": "Proyecto Alpha",
     "displayId": "PRJ-AX-992",
-    "status": "En curso",
+    "status": "Pendiente",
     "progress": 65,
     "deadline": "2025-02-10",
-    "manager": "Gabriel Hernanz",
+    "manager": "Rodrigo Yepez",
     "description": "Rediseño completo de la interfaz de usuario (UI/UX) para el portal de clientes.",
     "budget": 25000,
     "spent": 14500,
@@ -28,6 +28,10 @@
     ],
     "files": [],
     "members": [
+      {
+        "name": "Gabriel Hernanz",
+        "role": "user"
+      },
       {
         "name": "Rodrigo Yepez",
         "role": "user"
@@ -192,19 +196,60 @@
     "members": []
   },
   {
-    "name": "Proyecto Prueba 1",
-    "manager": "Gabriel Hernanz",
-    "deadline": "2025-12-21",
-    "status": "En espera",
-    "description": "Prueba1 ",
-    "id": 1764698461792,
-    "displayId": "PRJ-2025-866",
-    "files": [],
-    "members": [],
-    "risks": [],
-    "tasks": [],
+    "id": 1765452092258,
+    "displayId": "PRJ-2025-116",
+    "name": "Prueba12313",
+    "manager": "Rodrigo Yepes",
+    "deadline": "2025-12-26",
+    "status": "En curso",
+    "description": "asdad123",
     "progress": 0,
     "budget": 0,
+    "spent": 0,
+    "tasks": [],
+    "risks": [],
+    "files": []
+  },
+  {
+    "id": 1765455750920,
+    "displayId": "PRJ-2025-853",
+    "name": "Proyecto Prueba 1",
+    "manager": "Gabriel Hernanz",
+    "deadline": "2025-12-17",
+    "status": "En curso",
+    "description": "asdad",
+    "progress": 0,
+    "budget": 0,
+    "spent": 0,
+    "tasks": [],
+    "risks": [],
+    "files": []
+  },
+  {
+    "id": 1765794220459,
+    "displayId": "PRJ-2025-997",
+    "name": "Prueba2",
+    "budget": 123131,
+    "deadline": "2026-07-16",
+    "description": "sdqdsa124343",
+    "manager": "Jefe Supremo",
+    "status": "En curso",
+    "members": [
+      {
+        "name": "Jefe Supremo",
+        "role": "admin"
+      },
+      {
+        "name": "Gabriel Hernanz",
+        "role": "user"
+      },
+      {
+        "name": "Rodrigo Yepez",
+        "role": "user"
+      }
+    ],
+    "files": [],
+    "progress": 0,
     "spent": 0
   }
 ]
