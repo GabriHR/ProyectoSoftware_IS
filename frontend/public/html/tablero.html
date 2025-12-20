@@ -33,6 +33,15 @@
             border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px;
         }
 
+        .home-logo a {
+            color: #0f0f0f;
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+
         /* Tareas */
         .task-list { list-style: none; padding: 0; }
         .task-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
@@ -69,7 +78,8 @@
 
 <div id="pdf-content">
     <header class="site-header">
-        <div class="logo"><h1>TaskFlow</h1><p class="muted">Gestión Integral</p></div>
+        <div class="home-logo">
+            <a href="/">TaskFlow</a><p class="muted">Gestión Integral</p></div>
         <nav class="top-nav">
             <button class="btn" onclick="window.location.href='/user'" data-html2canvas-ignore="true">← Volver</button>
             <button class="btn primary" id="btn-pdf" data-html2canvas-ignore="true">Exportar a PDF 📄</button>
