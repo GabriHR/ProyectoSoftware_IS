@@ -1,5 +1,3 @@
-// frontend/src/index.js
-
 // Verificar si hay un usuario logueado
 const activeUser = JSON.parse(localStorage.getItem('activeUser'));
 
