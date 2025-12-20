@@ -23,7 +23,7 @@ Gestor web inteligente de tareas y flujo de trabajo para equipos pequeños.
 - Panel de proyectos.
 - Gestor de tareas (CRUD).
 - Panel de métricas y reportes.
-- *Tablero Kanban.
+- Tablero Kanban.
 ---
 ### VALOR PARA UNA EMPRESA
 
